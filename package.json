@@ -1,0 +1,27 @@
+{
+  "name": "CSS-Done-Well-Presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "serve": "^1.4.0"
+  },
+  "devDependencies": {
+    "stylelint": "^7.7.0"
+  },
+  "scripts": {
+    "start": "serve -p 3300",
+    "lint:style": "stylelint 'src/{bad,good}/**/*.css'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmasiello/CSS-Done-Well-Presentation.git"
+  },
+  "keywords": [],
+  "author": "Eric Masiello <eric.j.masiello@gmail.com> (http://synbydesign.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericmasiello/CSS-Done-Well-Presentation/issues"
+  },
+  "homepage": "https://github.com/ericmasiello/CSS-Done-Well-Presentation#readme"
+}

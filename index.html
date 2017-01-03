@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to Flow</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      h1 small {
+        color: #888;
+      }
+
+      ul {
+        padding-left: 0;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .remark-slide-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Introduction to Flow
+
+---
+
+# Agenda
+
+1. Review reference design
+2. Level set: CSS is harder than it looks
+  2.a. Cascade
+  2.b. Global
+  2.c. specificity
+3. Organization
+4. Take Inventory
+5. Identify design systems
+6. Composable
+7. Low specificity
+8. Tips
+  8.a. "But I'm already working in a CSS hellscape... what do I do?"
+  8.b. Breaking rules with the Monolith
+  8.c. Avoid `width` and `height`
+  8.d. Media Queries
+
+---
+
+# Here's a website.
+
+---
+
+# **Build components, not pages!**
+
+    </textarea>
+    <script src="vendor/remark.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
