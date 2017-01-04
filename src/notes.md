@@ -87,7 +87,7 @@ More Flow Notes
         - Array<string> (alternate form)
     - objects
         - let object: {foo: string, bar: number} = {foo: "foo", bar: 0};
-        - String objects ONLY allow the properties listed in the type
+        - Strict objects ONLY allow the properties listed in the type
 			type StrictUser = {| name: string, age: number |};
         - objects as maps/hash
             - let coolRating: {[id:string]: number} = {};
