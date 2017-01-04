@@ -123,7 +123,7 @@ Big Themes
     CS202: 'Computer Science 202: Advanced Java'
   }
   ```
-14. Defining Types
+14. Defining Types (Type Aliases)
   1. Writing types, especially elaborate ones like for objects or call back functions can make your code difficult to read
   2. Can define your own types:
   ```js
@@ -186,23 +186,69 @@ Big Themes
   ```
   2. Define an Enum
   ```js
-  type ResponseEnum = 'yes' | 'no' | 'maybe';
+  type ResponseEnum = 'yes' | 'no' | 'maybe'; // this is a "union" type
   const myResponse: ResponseEnum = 'yes';
   const badResponse: ResponseEnum = 'blah'; // error!
+
+  type Person = {
+    age: number,
+    name: string,
+    gender: 'male' | 'female'
+  }
+
+  const person: Person = {
+    name: 'joe',
+    age: 10,
+    gender: 'male'
+  };
+  console.log(person.job)
   ```
 19. When to annotate
   1. "Flow has sophisticated type inference and it is often unnecessary to explicitly annotate your program with types"
+  "Flow requires annotations at the boundaries of modules. This allows Flow to analyze modules in isolation which improves the performance of checking types across module boundaries. We’ve found that this helps to improve the self-documenting nature of module interfaces as well."
+  "You can type annotate all your code. That would be the most expressive and self-documenting approach. However, Flow does a lot of type inference for you to alleviate this requirement when it becomes a burden. The only place that you must annotate types is where those types go across module boundaries."
   2. Always annotate functions and methods
   3. If the type can be inferred based on other annotations, don't annotate.
   ```js
+  var b: boolean = true; // not necessary.
+
   function composeGreeting(name: string): string {
     return `Hi, ${name}`;
   }
   const greeting: string = composeGreeting('Eric'); // you don't need to annotate greeting as a string here
   ```
-20. Type Support
+20. When to annotate (continued)
+  Annotate the boundaries of your CommonJS/ES modules
+  ```js
+  export function add(num1: number, num2: number): number {
+    return num1 + num2;
+  };
+  ```
+  You can also `import` or `export` type annotations
+  ```js
+  //User.js
+  export type UserID = number;
+  export type User = {
+    id: UserID,
+    name: string,
+  };
+
+  //some-other-file.js
+  import type { UserID, User } from "./User.js";
+  ```
+21. Type Support
   1. Has build in support for DOM, BOM, CSSOM, and Node
   2. Add additional type defs with Flow Typed
   3. Some npm modules come with flow definitions built in (e.g. React, Immutable.js)
   4. Create your own
     1. Where do you put them?
+22. Using Flow in an editor
+  1. Nuclide
+23. Using Flow in a Web App
+  1. Requires you strip annotations away
+  2. Likely want to make flow checking part of your CI process or maybe part of a pre-push/commit hook
+24. Using Flow in React Native
+25. My impression so faster
+  1. Its a new challenge. I enjoy it but that isn't to say its not without its frustrations.
+  2. Can be challenging working with 3rd party libraries that haven't been type checked
+  3. Use an editor that has support for Flow (Atom/Nuclide) - real time feedback is the most useful.
