@@ -8,6 +8,8 @@ Big Themes
 7. How to use Flow in React Native
 8. My overall reaction to it
 
+https://flowtype.org/try/
+
 
 1. What is Flow
   1. Static type checker
@@ -23,7 +25,8 @@ Big Themes
   2. Can quickly jump to method definitions
   3. Provides type safety
   4. Removes a certain segment of errors/tests you'd otherwise have to write.
-    1. Example: if i write a function that expects a type string, so long as I run flow as part of test suite, I won't need to write a unit test to handle non-string values being passed to my function
+    1. Example: if I write a function that expects a type string, so long as I run flow as part of test suite, I won't need to write a unit test to handle non-string values being passed to my function
+  5. [REFERENCE pyramid.jpg]
 4. Typescript
   1. The other guy in the game
   2. Big in the Angular community
@@ -242,13 +245,59 @@ Big Themes
   3. Some npm modules come with flow definitions built in (e.g. React, Immutable.js)
   4. Create your own
     1. Where do you put them?
-22. Using Flow in an editor
-  1. Nuclide
+22. Flow + Editor Plugins = Good Time
+  1. Vim https://github.com/flowtype/vim-flow
+  2. Emacs https://github.com/flowtype/flow-for-emacs
+  3. Nuclide (for Atom) https://nuclide.io/docs/languages/flow/
+  4. Sublime https://github.com/SublimeLinter/SublimeLinter-flow
+  5. VS Code https://github.com/flowtype/flow-for-vscode
 23. Using Flow in a Web App
   1. Requires you strip annotations away
-  2. Likely want to make flow checking part of your CI process or maybe part of a pre-push/commit hook
+  ```js
+  function composeGreeting(name: string): string {
+    return `Hi, ${name}`;
+  }
+  ```
+  2. Using `babel` + `babel-plugin-transform-flow-strip-types`
+  3. Add to your .babelrc file
+  ```
+  {
+    "plugins": ["transform-flow-strip-types"]
+  }
+  ```
+  4. You'll want to have flow run as part of your test coverage
+  ```
+  // package.json
+  "scripts": {
+    "lint:script": "eslint . .eslintrc.js .stylelintrc.js --ext [js,jsx] --cache",
+    "lint:style": "stylelint '{src,demo}/style/**/*.scss'",
+    "lint": "npm-run-all --parallel lint:script lint:style",
+    "test": "cross-env NODE_ENV=test nyc mocha test/.setup.js 'src/**/*.test.jsx'",
+    "flow": "flow",
+    "validate": "npm-run-all --parallel flow lint test"
+  }
+  ```
 24. Using Flow in React Native
+  1. Already comes with a .flowconfig configured specifically for RN
+  2. Add flow bin that matches version in your .flowconfig (e.g. 0.36.0)
+  ```shell
+  yarn add -D flow-bin@0.36.0
+  ```  
+  3. Add it to your package.json under scripts
+  ```
+  "scripts": {
+      ...
+      "flow": "flow"
+  }
+  ```
+  4. No need to strip annotations with babel. its taken care of for you.
 25. My impression so faster
   1. Its a new challenge. I enjoy it but that isn't to say its not without its frustrations.
   2. Can be challenging working with 3rd party libraries that haven't been type checked
   3. Use an editor that has support for Flow (Atom/Nuclide) - real time feedback is the most useful.
+XX. More to explore
+  1. Configuring your project with .flowconfig
+  2. Polymorphic classes
+  3. Mixins
+  4. Interfaces
+  5. Utilities e.g. `$Key<T>`, `$Diff<A, B>`, etc.
