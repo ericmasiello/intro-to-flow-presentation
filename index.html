@@ -40,7 +40,7 @@
 
 class: center, middle
 
-# Introduction to Flow
+# Introduction to Flow[type]
 
 ---
 
@@ -55,29 +55,49 @@ class: center, middle
 
 # Agenda
 
-1. Review reference design
-2. Level set: CSS is harder than it looks
-  2.a. Cascade
-  2.b. Global
-  2.c. specificity
-3. Organization
-4. Take Inventory
-5. Identify design systems
-6. Composable
-7. Low specificity
-8. Tips
-  8.a. "But I'm already working in a CSS hellscape... what do I do?"
-  8.b. Breaking rules with the Monolith
-  8.c. Avoid `width` and `height`
-  8.d. Media Queries
+1. What is Flow
+2. Setup
+3. Flow 101
+4. Editor integration
+5. Using in Web apps
+6. Using in React Native
 
 ---
 
-# Here's a website.
+# What is Flow?
+
+1. Static type checker for JavaScript
+2. Works in browser JavaScript, Node, React Native, etc.
 
 ---
 
-# **Build components, not pages!**
+# But what is static type checking?
+<blockquote>
+  "This generally means that the type of a variable is known at compile time. For some languages this means that you as the programmer must specify what type each variable is (e.g.: Java, C, C++); other languages offer some form of type inference, the capability of the type system to deduce the type of a variable (e.g.: OCaml, Haskell, Scala) — stackoverflow."
+</blockquote>
+
+---
+
+# Why is static type checking useful?
+
+* Provides type safety (no more "undefined is not a function")
+* Improved developer experience (jump to methods, autocompletion)
+* Can aid in testing
+
+---
+
+<img src="src/images/pyramid.jpg" />
+
+---
+
+# Flow or TypeScript?
+
+---
+
+# Setup
+1. Install *flow-bin* `yarn add -D flow-bin`
+2. Run `./node_modules/.bin/flow init`
+3. Add `/* @flow */` to files you wish to check
 
     </textarea>
     <script src="vendor/remark.min.js">

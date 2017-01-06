@@ -17,33 +17,33 @@ https://flowtype.org/try/
   2. Comes ready to go with React Native
 2. What is static type checking?
   1. "This generally means that the type of a variable is known at compile time. For some languages this means that you as the programmer must specify what type each variable is (e.g.: Java, C, C++); other languages offer some form of type inference, the capability of the type system to deduce the type of a variable (e.g.: OCaml, Haskell, Scala) — stackoverflow.""
-2. What is type checking?
+3. What is type checking?
   1. Strong vs. weak, dynamic vs. static
   2. What is JavaScript?
-3. Why is type checking useful
+4. Why is type checking useful
   1. Autocompletion
   2. Can quickly jump to method definitions
   3. Provides type safety
   4. Removes a certain segment of errors/tests you'd otherwise have to write.
     1. Example: if I write a function that expects a type string, so long as I run flow as part of test suite, I won't need to write a unit test to handle non-string values being passed to my function
   5. [REFERENCE pyramid.jpg]
-4. Typescript
+5. Typescript
   1. The other guy in the game
   2. Big in the Angular community
   3. Seems to be making traction beyond Angular
   4. I don't know much about it
-5. Setting up Flow
+6. Setting up Flow
   1. Install flow-bin `yarn add -D flow-bin`
   2. Run `./node_modules/.bin/flow init`
     1. This will create a .flowconfig file
   3. Add `/* @flow */` to files
-6. Running Flow Server
+7. Running Flow Server
   1. Add a "script" to package.json
   2. `yarn run flow` (`npm run flow`)
   3. Spawns a background process
   4. Initial startup is slow
   5. Afterward, just type `yarn run flow` and it'll be fast
-7. Annotating with Flow
+8. Annotating with Flow
   // Basic annotation
   ```js
   function sayHi(name: string): string {
@@ -53,7 +53,7 @@ https://flowtype.org/try/
   sayHi(22); // flow won't like this
   sayHi('Bill'); // all good!
   ```
-8. Primitive Types:
+9. Primitive Types:
   1. number
   2. string
   3. boolean
@@ -295,7 +295,8 @@ https://flowtype.org/try/
   1. Its a new challenge. I enjoy it but that isn't to say its not without its frustrations.
   2. Can be challenging working with 3rd party libraries that haven't been type checked
   3. Use an editor that has support for Flow (Atom/Nuclide) - real time feedback is the most useful.
-XX. More to explore
+  4. Utilizing 3rd party libraries can be challenging. To get the most of out flow you'll need to use libraries that annotations or create your own annotations for those libraries. If you're staying mostly in the "core" React ecosystem, most of these libraries have annotations (React, Redux, Immutable, etc).
+26. More to explore
   1. Configuring your project with .flowconfig
   2. Polymorphic classes
   3. Mixins
