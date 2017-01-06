@@ -173,3 +173,9 @@ More Flow Notes
 Things flow is good for
 - If you try to import a path to a file that doesn’t exist flow will catch it. Particularly useful when using something like Atom/Nuclide cuz it’ll highlight the error right away.
 -
+
+
+
+
+# Reference
+- http://djcordhose.github.io/flow-vs-typescript/flow-typescript-2.html
