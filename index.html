@@ -1,109 +1,90 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Introduction to Flow</title>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
-    <style>
+<!doctype html>
+<html lang="en">
 
-      body { font-family: 'Roboto', sans-serif;; }
+	<head>
+		<meta charset="utf-8">
 
-      h1, h2, h3 {
-        font-family: 'Roboto Condensed', sans-serif;;
-        font-weight: normal;
-      }
+		<title>React-Redux Presentation</title>		
+		<meta name="author" content="Eric Masiello">
 
-      h1 small {
-        color: #888;
-      }
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-      ul {
-        padding-left: 0;
-      }
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-      img {
-        max-width: 100%;
-      }
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
 
-      .remark-slide-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-      }
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-    </style>
-  </head>
-  <body>
-    <textarea id="source">
+	
 
-class: center, middle
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
 
-# Introduction to Flow[type]
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
 
----
+	<body>
 
-# About me
-* Full stack developer @ Vistaprint Digital
-* Coauthor of [*Mastering React Native*](https://www.packtpub.com/web-development/mastering-react-native) (Packt Publishing)
-* Twitter [@EricMasiello](https://twitter.com/ericmasiello)
-* Freelance @ [Syn By Design](http://synbydesign.com)
+		<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 
----
+  		<symbol id="logo" viewBox="0 0 64 64">
+				<path d="M36.878,5h-9.95L0.197,49.525L0,50.002L5.073,59h54.341L64, 49.338L36.878,5z M61.428,48.578H20.586l3.673-6.634h26.375 L29.203, 6.894h6.6L61.428,48.578z M38.553,40.054H25.312l6.156-11.108L38.553, 40.054z M27.534,7.828l19.685,32.226h-6.402 L27.512,19.208L5.739, 56.229l-3.594-6.23L27.534,7.828z M58.244,57.102h-50.8l20.167-34.195l2.685, 4.206l-13.027,23.36h44.179 L58.244,57.102z"></path>
+			</symbol>
+		</svg>
 
+		<div class="reveal">
 
-# Agenda
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-markdown="./slides.md"  
+				         data-separator="^---"  
+				         data-separator-vertical="^--"
+				         data-separator-notes="^Note:"  
+				         data-charset="utf8">
+				</section>
 
-1. What is Flow
-2. Setup
-3. Flow 101
-4. Editor integration
-5. Using in Web apps
-6. Using in React Native
+			</div>
 
----
+		</div>
 
-# What is Flow?
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
-1. Static type checker for JavaScript
-2. Works in browser JavaScript, Node, React Native, etc.
+		<script>
 
----
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
 
-# But what is static type checking?
-<blockquote>
-  "This generally means that the type of a variable is known at compile time. For some languages this means that you as the programmer must specify what type each variable is (e.g.: Java, C, C++); other languages offer some form of type inference, the capability of the type system to deduce the type of a variable (e.g.: OCaml, Haskell, Scala) — stackoverflow."
-</blockquote>
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
----
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
 
-# Why is static type checking useful?
+		</script>
 
-* Provides type safety (no more "undefined is not a function")
-* Improved developer experience (jump to methods, autocompletion)
-* Can aid in testing
-
----
-
-<img src="src/images/pyramid.jpg" />
-
----
-
-# Flow or TypeScript?
-
----
-
-# Setup
-1. Install *flow-bin* `yarn add -D flow-bin`
-2. Run `./node_modules/.bin/flow init`
-3. Add `/* @flow */` to files you wish to check
-
-    </textarea>
-    <script src="vendor/remark.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-    </script>
-  </body>
+	</body>
 </html>
