@@ -653,7 +653,7 @@ Note:
   "lint:style": "stylelint '{src,demo}/style/**/*.scss'",
   "lint": "npm-run-all --parallel lint:script lint:style",
   "test": "cross-env NODE_ENV=test nyc mocha test/.setup.js 'src/**/*.test.jsx'",
-  "flow": “flow check",
+  "flow": "flow check",
   "validate": "npm-run-all --parallel flow lint test"
 }
 ```
