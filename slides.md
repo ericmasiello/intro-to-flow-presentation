@@ -1,6 +1,6 @@
 
 # Flow
-## A beginner’s introduction (by a beginner)
+## A beginner's introduction (by a beginner)
 
 ---
 
@@ -102,13 +102,13 @@ Add `/* @flow */` to JS files you wish to check
 
 --
 
-### Run the Flow Server 
+### Run the Flow Server
 
 1. Add script to `package.json`
 
 ```
 "scripts": {
-  "flow": “flow",
+  "flow": "flow",
   ...
   }
 ```
@@ -170,7 +170,7 @@ sayHi(); // 'Hi, Eric'
 Note:
 * Quick aside - 
 * In JavaScript, arguments can be considered "optional"
-* Back in the ES5 days, this wasn’t truly part of the language but we could accomplish this by checking if the argument is equal to undefined.
+* Back in the ES5 days, this wasn't truly part of the language but we could accomplish this by checking if the argument is equal to undefined.
 * If it is, we can set it to a default value.
 
 --
@@ -553,7 +553,7 @@ Note:
 
 Note:
 * Defining a function or a method, I personally like to annotate these. its not strictly required but i find it useful
-* If the type can be inferred based on the type returned from a function (e.g. `var message: string = greeting(‘hi’););` or the value explicitly assigned (e.g. `var x = 2)`, you don't need to and it probably will just clutter up your code
+* If the type can be inferred based on the type returned from a function (e.g. `var message: string = greeting(‘hi'););` or the value explicitly assigned (e.g. `var x = 2)`, you don't need to and it probably will just clutter up your code
 * If you use CommonJS modules (as you would in Node) or ES2015 modules (`import`/`export` syntax) you'll need to annotate whatever you export
 
 --
@@ -682,7 +682,7 @@ Add a script to your package.json scripts
 ```js
 "scripts": {
   ...
-  "flow": "flow check"
+  "flow": "flow"
 }
 ```
 Note:
@@ -691,16 +691,77 @@ Note:
 
 ---
 
+## Working with 3rd Party Code
+
+--
+
+### `flow-typed`
+
+* https://github.com/flowtype/flow-typed
+* CLI flow-typed install
+* Analyzes your package.json adding type defs for stuff it has
+* Adds stubs for anything it doesn't have
+
+Note:
+* "flow-typed is a repository of third-party library interface definitions for use with Flow"
+* Flow typed is both a CLI and a repository of 3rd party library typings (e.g. mocha, jasmine, normalizr, parse, lodash, underscore, redux saga
+* It has a lot in there but obviously the npm ecosystem is massive so don't be surprised if it doesn't have typings for stuff you're using.
+* What it does do though: using the CLI, it will examine your package.json and add typing definitions to your project for anything it has its repository
+* For anything it doesn't have, it'll create stubs that you can leave as is or flesh out more
+* Easy to setup. They recommend installing it as a global npm dep. I prefer to install it as part of my project
+* Once added, just run `flow-typed install`
+* All the installed types will be put inside your project in a folder called "flow-typed"
+
+---
+
+## Personal Impressions
+
+* Fun & challenging
+* Take it slow: only add `/* @flow */` in a few places
+* Use an editor that has flow support
+* React "core" ecosystem is well annotated
+* For everything else, use flow-typed https://github.com/flowtype/flow-typed
+* Use `// $FlowFixMe` to disable flow checking for a line of code
+
+Note:
+* Fun - I always like to play with new things so this but a fun little journey
+* Challenging and even a little annoying at times: when you're working in your own little sandbox its pretty easy
+* Making sense of type definitions in other modules (when new to flow) can take some time
+* Take it slow: try and isolate your flow checking to small parts of your app - maybe one or two modules and slowly build up your confidence and understanding
+* React: if you're sticking to the the sorta "idiomatic" way of doing React (React, Redux, Immutable, etc) you'll find those things are pretty well annotated already
+* Flow-typed is a repository of 3rd party annotations created by the community.
+ * Contains many popular libraries
+ * If you're using an npm module it doesn't know about, it'll create a stub annotation file for you
+ * You're encouraged to contribute back
+
+---
+
 ## Flow or TypeScript?
 
 Note:
-* I've only played with TypeScript a tiny bit about a year back so I don’t have much to go off
+* I've only played with TypeScript a tiny bit about a year back so I don't have much to go off
 * Mostly associated with the Angular / Angular 2 community
 * Similar to that of Flow - adds optional type annotations. Once compiled, it removes all the type annotations
 * Additionally it adds decorators and a few other language extensions
 * When people talk about the differences between Flow and TypeScript they'll often point out at that TypeScript is a language that compiles down to JavaScript whereas Flow just adds types to JavaScript. 
 * To me that feels like a pointless distinction because either way, you can run either in a browsers. 
-* We’ll talk about this later - just added my own $0.02
+* We'll talk about this later - just added my own $0.02
+
+---
+
+## More to Explore
+
+* Custom configurations `.flowconfig`
+* Polymorphic types
+* Mixins
+* Interfaces
+* Utilities e.g. `$Key<T>`, `$Diff<A, B>`, etc.
+
+Note:
+* This was the 100, maybe 200 level intro to Flow
+* There's a lot more explore
+* Admittedly, I don't totally understand all of the advanced topics
+* So I'm still learning
 
 ---
 
