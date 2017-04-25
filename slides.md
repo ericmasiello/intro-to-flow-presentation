@@ -1,6 +1,6 @@
 
 # Flow
-## A beginner's introduction (by a beginner)
+### A beginner's introduction (by a beginner)
 
 ---
 
@@ -24,26 +24,27 @@
 
 ## Agenda
 
-1. TODO
-2. TODO
-3. TODO
+1. About Flow
+2. Using type annotations in Flow
+3. Personal impression & advice
 
 ---
 
 ## What is Flow?
 
 * http://flowtype.org
-* Static type checker for JavaScript
 * Developed by Facebook team
-* Works in browser JavaScript, Node, React Native, etc.
+* Intended for browser JavaScript, Node, React Native, etc.
 * Play along at home http://flowtype.org/try
+* Static type checker for JavaScript
 
 --
 
 ### What is static type checking?
 
-This generally means that the type of a variable is known at compile time. For some languages this means that you as the programmer must specify what type each variable is (e.g.: Java, C, C++); other languages offer some form of type inference, the capability of the type system to deduce the type of a variable (e.g.: OCaml, Haskell, Scala) 
-— stackoverflow.
+> Static type checking is the process of verifying the type safety of a program based on analysis of a program's text (source code). If a program passes a static type checker, then the program is guaranteed to satisfy some set of type safety properties for all possible inputs.
+
+https://en.wikipedia.org/wiki/Type_system.
 
 Note:
 * This is different than JavaScript because once you set a variable in JavaScript - it has a type.
@@ -59,11 +60,6 @@ Note:
  * jump to methods, autocompletion
 * Aids in testing
  * Code can be analyzed
-
---
-
-### Testing Pyramid
-![Testing Pyramid](img/testing-pyramid.jpg)
 
 --
 
@@ -83,9 +79,20 @@ Browser Object Model (History, Location, Geolocation)
 CSS Object Model: CSSStyleDeclaration, StyleSheet, MediaList
 * Node: fs (file system), http, path, etc.
 
+--
+
+### Testing Pyramid
+<img src="img/testing-pyramid.jpg" alt="Testing Pyramid" style="max-height: 450px; border-width: 1px" />
+
+Note:
+* Bottom of your pyramid you got the easly stuff: linting using tools like eslint
+* A layer above that you got tests (e.g. unit tests, then integration tests, etc)
+* Then maybe at the top you have webdriver automated tests using something like Selenium
+* I think of Flow as that bottom layer: it sits alongside toos like eslint - simple static analysis
+
 ---
 
-## Setup and Running
+## Up and Running
 
 --
 
@@ -98,13 +105,24 @@ npm install -D flow-bin
 ./node_modules/.bin/flow init
 ```
 
-Add `/* @flow */` to JS files you wish to check
+Add `/* @flow */` comment to JS files you wish to check
+
+```js
+/* @flow */
+
+function add(a, b) {
+  return a + b;
+}
+```
+
+Note:
+* There is a way to configure Flow to check all files without needing the `/* @flow */` comment
 
 --
 
 ### Run the Flow Server
 
-1. Add script to `package.json`
+Add script to `package.json`
 
 ```
 "scripts": {
@@ -112,7 +130,7 @@ Add `/* @flow */` to JS files you wish to check
   ...
   }
 ```
-2. Run the script
+Run the script
 ```bash
 npm run flow
 ```
@@ -143,13 +161,12 @@ sayHi(22); // flow won't like this
 
 ### Primitive Types
 
-```js
-number
-string
-boolean
-null
-void // same as undefined
-```
+
+* `number`
+* `string`
+* `boolean`
+* `null`
+* `void`
 
 --
 
@@ -192,13 +209,15 @@ Note:
 
 --
 
-## How would you define the type of an optional?
+### How would you define the type of an optional?
 
 --
 
 ### Annotating Optionals in Flow
 
-optionals are: `T | void`
+optionals are:
+
+`T | void`
 
 ```js
 function sayHi(name?: string): string {
@@ -384,7 +403,7 @@ Note:
 ---
 
 ## Objects annotations are ugly.
-### Introducing Type Aliases
+### Solution: Type Aliases
 
 Note:
 * Doing all this stuff inline as you may have noticed can produce some pretty long line lengths
@@ -413,10 +432,13 @@ const eric: Person = {
 };
  
 type ArrayString = string[];
-const arrStrings: ArrayString = ['Hello', ‘World'];
+const arrStrings: ArrayString = ['Hello', 'World'];
 
 type People = Person[];
-const students: People = [{firstName: 'Eric', lastName: 'Masiello'}, {firstName: 'Jon', lastName: 'Smith'}];
+const students: People = [
+  {firstName: 'Eric', lastName: 'Masiello'},
+  {firstName: 'Greg', lastName: 'Douglas'}
+];
 ```
 
 --
@@ -426,7 +448,7 @@ const students: People = [{firstName: 'Eric', lastName: 'Masiello'}, {firstName:
 Generic Function type
 
 ```js
-function greetPerson1(id: number, lookupMethod: Function): string {
+function greetPerson(id: number, lookupMethod: Function): string {
   const person: Person = lookupMethod(id);
   return `Welcome, ${person.firstName} ${person.lastName}`;
 }
@@ -473,7 +495,7 @@ const presenter: Person = new Person('Eric', 'Masiello');
 Note:
 
 * The class becomes the type you can use.
-* Must annotate properties of class (e.g. `firstName`, `lastName`) (i.e. anything that you would reference with `this`)
+* Must annotate class properties (e.g. `firstName`, `lastName`) (i.e. anything that you would reference with `this`)
 * There exist limited support for the old school way of writing classes with functions. Its recommended you use the ES2015 class syntax
 
 ---
@@ -547,7 +569,7 @@ Note:
 
 ### When should I annotate?
 
-* Functions parameters and output: **Recommend**
+* Functions parameters and return value: **Recommend**
 * When the type can be inferred: **Nah**
 * Boundaries of CommonJS/ES modules **Required**
 
@@ -595,9 +617,7 @@ Note:
 
 --
 
-### Editor plugins
-
-FIXME: WHAT PLUGIN AM I USING FOR VSCODE?
+### Why use editor plugins
 
 * Highlight errors in real time
 * Allow you to jump to definitions of objects or methods
@@ -605,16 +625,19 @@ FIXME: WHAT PLUGIN AM I USING FOR VSCODE?
 * Hovering over functions will show you the parameter and return type
 * **Mileage may vary with plugins/editors**
 
-
-#### Options:
-* Vim https://github.com/flowtype/vim-flow
-* Emacs https://github.com/flowtype/flow-for-emacs
-* Nuclide (for Atom) https://nuclide.io/docs/languages/flow/
-* Sublime https://github.com/SublimeLinter/SublimeLinter-flow
-* VS Code https://github.com/flowtype/flow-for-vscode
-
 Note:
 * While you'll end up leverage flow in the command line quite a bit... **real time feedback is clutch**
+
+--
+
+### Editor plugin options:
+* Vim [vim-flow](https://github.com/flowtype/vim-flow)
+* Emacs [flow-for-emacs](https://github.com/flowtype/flow-for-emacs)
+* Atom [Nuclide](https://nuclide.io/docs/languages/flow/)
+* Sublime [SublimeLinter-flow](https://github.com/SublimeLinter/SublimeLinter-flow)
+* VS Code [Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
+
+Note:
 * Nuclide I've found to be the best. Plus Nuclide has support for a bunch of React Native stuff so if you're into React Native development, use Nuclude with Atom
 * Lately I've been using VS Code a lot cuz I like the Node debugging experience. Plugins are good there too but Nuclide still feels the best to me
 
@@ -744,8 +767,7 @@ Note:
 * Similar to that of Flow - adds optional type annotations. Once compiled, it removes all the type annotations
 * Additionally it adds decorators and a few other language extensions
 * When people talk about the differences between Flow and TypeScript they'll often point out at that TypeScript is a language that compiles down to JavaScript whereas Flow just adds types to JavaScript. 
-* To me that feels like a pointless distinction because either way, you can run either in a browsers. 
-* We'll talk about this later - just added my own $0.02
+ * To me that feels like a pointless distinction because either way, you can run either in a browsers.
 
 ---
 
