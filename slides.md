@@ -9,7 +9,7 @@
 * @ericmasiello
 * eric.j.masiello@gmail.com
 * Fullstack JavaScript Engineer @ Vistaprint Digital
-* Co-Instructor for FEWD 31
+* Front End Web Development Instructor at General Assembly in DC
 * Co-Author of Mastering React Native
 
 --
@@ -32,11 +32,11 @@
 
 ## What is Flow?
 
+* Static type checker for JavaScript
 * http://flowtype.org
 * Developed by Facebook team
 * Intended for browser JavaScript, Node, React Native, etc.
 * Play along at home http://flowtype.org/try
-* Static type checker for JavaScript
 
 --
 
@@ -47,8 +47,8 @@
 https://en.wikipedia.org/wiki/Type_system.
 
 Note:
-* This is different than JavaScript because once you set a variable in JavaScript - it has a type.
-* But that type is not locked. You can can change it at any point.
+- This is different than JavaScript because once you set a variable in JavaScript - it has a type.
+- But that type is not locked. You can can change it at any point.
 
 --
 
@@ -57,7 +57,7 @@ Note:
 * Provides type safety
  * Catch type errors early "undefined is not a function"
 * Improved developer experience (IDE integration)
- * jump to methods, autocompletion
+ * Jump to definition & autocompletion
 * Aids in testing
  * Code can be analyzed
 
@@ -81,14 +81,15 @@ CSS Object Model: CSSStyleDeclaration, StyleSheet, MediaList
 
 --
 
-### Testing Pyramid
+### JavaScript Testing Pyramid
 <img src="img/testing-pyramid.jpg" alt="Testing Pyramid" style="max-height: 450px; border-width: 1px" />
 
 Note:
-* Bottom of your pyramid you got the easly stuff: linting using tools like eslint
-* A layer above that you got tests (e.g. unit tests, then integration tests, etc)
-* Then maybe at the top you have webdriver automated tests using something like Selenium
-* I think of Flow as that bottom layer: it sits alongside toos like eslint - simple static analysis
+
+- Bottom of your pyramid you got the easly stuff: linting using tools like eslint
+- A layer above that you got tests (e.g. unit tests, then integration tests, etc)
+- Then maybe at the top you have webdriver automated tests using something like Selenium
+- I think of Flow as that bottom layer: it sits alongside toos like eslint - simple static analysis
 
 ---
 
@@ -116,7 +117,7 @@ function add(a, b) {
 ```
 
 Note:
-* There is a way to configure Flow to check all files without needing the `/* @flow */` comment
+There is a way to configure Flow to check all files without needing the `/* @flow */` comment
 
 --
 
@@ -136,9 +137,9 @@ npm run flow
 ```
 
 Note:
-* Running "flow" or "flow start" Spawns a background process
-* Initial startup is slow
-* Afterward, just type `npm run flow` and it'll be fast
+- Running "flow" or "flow start" Spawns a background process
+- Initial startup is slow
+- Afterward, just type `npm run flow` and it'll be fast
 
 ---
 
@@ -185,10 +186,10 @@ sayHi(); // 'Hi, Eric'
 ```
 
 Note:
-* Quick aside - 
-* In JavaScript, arguments can be considered "optional"
-* Back in the ES5 days, this wasn't truly part of the language but we could accomplish this by checking if the argument is equal to undefined.
-* If it is, we can set it to a default value.
+- Quick aside - 
+- In JavaScript, arguments can be considered "optional"
+- Back in the ES5 days, this wasn't truly part of the language but we could accomplish this by checking if the argument is equal to undefined.
+- If it is, we can set it to a default value.
 
 --
 
@@ -205,7 +206,7 @@ sayHi(); // 'Hi, Eric'
 ```
 
 Note:
-* ES6 or ES2015 made this pattern part of the language
+- ES6 or ES2015 made this pattern part of the language
 
 --
 
@@ -231,11 +232,11 @@ function sayHi(name?: string = 'Eric'): string {
 
 Note:
 
-* We say the type is T or void
-* The type of name is basically string or void
-* We express this with a "?" after the variable
-* This will be used solely for types of string OR undefined. **NOT** null.
-* To use nulls we create something called a *Maybe*
+- We say the type is T or void
+- The type of name is basically string or void
+- We express this with a "?" after the variable
+- This will be used solely for types of string OR undefined. **NOT** null.
+- To use nulls we create something called a *Maybe*
 
 --
 
@@ -264,10 +265,10 @@ sayHiMaybe(null); // 'Hi, stranger'
 ```
 
 Note:
-* There's another concept in Flow called Maybes
-* They are similar to optionals but they also support the type null
-* Syntax for defining a maybe is slightly different
-* In this example, because the type can be null, Flow forces us to check that name is truthy
+- There's another concept in Flow called Maybes
+- They are similar to optionals but they also support the type null
+- Syntax for defining a maybe is slightly different
+- In this example, because the type can be null, Flow forces us to check that name is truthy
 
 --
 
@@ -290,7 +291,7 @@ function mixedTest(x: mixed): void {
 ```
 
 Note:
-* `any` is the default type if you do not define it and it cannot be inferred by the code
+- `any` is the default type if you do not define it and it cannot be inferred by the code
 
 --
 
@@ -331,8 +332,8 @@ myObj = { foo: "foo", bar: 0 };
 ```
 
 Note:
-* Non-strict - allows you to add additional properties
-* Strict objects: **ONLY** allow the properties listed in the type
+- Non-strict - allows you to add additional properties
+- Strict objects: **ONLY** allow the properties listed in the type
 
 --
 
@@ -359,9 +360,9 @@ let compSciCourses: {[id:string]: string} = {
 ```
 
 Note:
-* Within annotation, left side represents the key, the right side are the possible values
-* There's nothing special about "id", its just a convention. I've also seen "key" used in place. But you can type anything there and it'll serve the same purpose
-* If you want to use non-string keys, you can't define them inline within the object
+- Within annotation, left side represents the key, the right side are the possible values
+- There's nothing special about "id", its just a convention. I've also seen "key" used in place. But you can type anything there and it'll serve the same purpose
+- If you want to use non-string keys, you can't define them inline within the object
 
 --
 
@@ -380,8 +381,8 @@ let compSciCoursesTyped: {[id:number]: string} = {
 This won't work :(
 
 Note:
-* If you want to use non-string keys, you can't define them inline within the object
-* However, the Flow checker will throw an error - not a type error - but just an error saying *"non-string literal property keys not supported"*
+- If you want to use non-string keys, you can't define them inline within the object
+- However, the Flow checker will throw an error - not a type error - but just an error saying *"non-string literal property keys not supported"*
 
 --
 
@@ -397,8 +398,8 @@ compSciCoursesTyped[202] = 'Computer Science 202: Advanced Java';
 ```
 
 Note:
-* This work around will work. 
-* Not sure if Flow team has plans to fix the in the short term.
+- This work around will work. 
+- Not sure if Flow team has plans to fix the in the short term.
 
 ---
 
@@ -406,8 +407,8 @@ Note:
 ### Solution: Type Aliases
 
 Note:
-* Doing all this stuff inline as you may have noticed can produce some pretty long line lengths
-* Hard to read
+- Doing all this stuff inline as you may have noticed can produce some pretty long line lengths
+- Hard to read
 
 --
 
@@ -493,10 +494,9 @@ const presenter: Person = new Person('Eric', 'Masiello');
 ```
 
 Note:
-
-* The class becomes the type you can use.
-* Must annotate class properties (e.g. `firstName`, `lastName`) (i.e. anything that you would reference with `this`)
-* There exist limited support for the old school way of writing classes with functions. Its recommended you use the ES2015 class syntax
+- The class becomes the type you can use.
+- Must annotate class properties (e.g. `firstName`, `lastName`) (i.e. anything that you would reference with `this`)
+- There exist limited support for the old school way of writing classes with functions. Its recommended you use the ES2015 class syntax
 
 ---
 
@@ -515,7 +515,7 @@ const usdToEuro: CurrencyConversion = ['USD', 'EUR', 0.95];
 
 --
 
-### Enumerations
+### *Enumeration-like*
 
 Can be created using the union (`|`) operand
 
@@ -556,8 +556,8 @@ const eric: User = {
 ```
 
 Note:
-* On top of importing and exporting variables from various modules...
-* Flow has extended ES Module syntax to allow sharing of types between modules
+- On top of importing and exporting variables from various modules...
+- Flow has extended ES Module syntax to allow sharing of types between modules
 
 --
 
@@ -574,9 +574,9 @@ Note:
 * Boundaries of CommonJS/ES modules **Required**
 
 Note:
-* Defining a function or a method, I personally like to annotate these. its not strictly required but i find it useful
-* If the type can be inferred based on the type returned from a function (e.g. `var message: string = greeting(‘hi'););` or the value explicitly assigned (e.g. `var x = 2)`, you don't need to and it probably will just clutter up your code
-* If you use CommonJS modules (as you would in Node) or ES2015 modules (`import`/`export` syntax) you'll need to annotate whatever you export
+- Defining a function or a method, I personally like to annotate these. its not strictly required but i find it useful
+- If the type can be inferred based on the type returned from a function (e.g. `var message: string = greeting(‘hi'););` or the value explicitly assigned (e.g. `var x = 2)`, you don't need to and it probably will just clutter up your code
+- If you use CommonJS modules (as you would in Node) or ES2015 modules (`import`/`export` syntax) you'll need to annotate whatever you export
 
 --
 
@@ -600,20 +600,20 @@ export function sayHi(name: string): string {
 ```
 
 Note:
-* This has to do with an optimization Flow does.
-* A nice side effect is that Flow will now understand what was and wasn't exported from a module.
-* Therefore, if you try to import something from a module that it doesn't export, flow will catch it and inform you of the error
+- This has to do with an optimization Flow does.
+- A nice side effect is that Flow will now understand what was and wasn't exported from a module.
+- Therefore, if you try to import something from a module that it doesn't export, flow will catch it and inform you of the error
 
 ---
 
 ## Using Flow
 
 Note:
-* We've talked at length about the language of flow
-* But how do you actually use it
- * in your code editor
- * in a web app
- * in a React Native app
+- We've talked at length about the language of flow
+- But how do you actually use it
+ - in your code editor
+ - in a web app
+ - in a React Native app
 
 --
 
@@ -626,7 +626,7 @@ Note:
 * **Mileage may vary with plugins/editors**
 
 Note:
-* While you'll end up leverage flow in the command line quite a bit... **real time feedback is clutch**
+- While you'll end up leverage flow in the command line quite a bit... **real time feedback is clutch**
 
 --
 
@@ -638,8 +638,8 @@ Note:
 * VS Code [Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
 
 Note:
-* Nuclide I've found to be the best. Plus Nuclide has support for a bunch of React Native stuff so if you're into React Native development, use Nuclude with Atom
-* Lately I've been using VS Code a lot cuz I like the Node debugging experience. Plugins are good there too but Nuclide still feels the best to me
+- Nuclide I've found to be the best. Plus Nuclide has support for a bunch of React Native stuff so if you're into React Native development, use Nuclude with Atom
+- Lately I've been using VS Code a lot cuz I like the Node debugging experience. Plugins are good there too but Nuclide still feels the best to me
 
 --
 
@@ -657,12 +657,12 @@ Note:
 ```
 
 Note:
-* If you try and annotate your code and then run it in the browser, it'll obviously break
-* We need to strip away those annotations before we run it in the browser
-* Using Babel and the babel-plugin-transform-flow-strip-types
- * Get all the benefits of flow as we author code
- * But can strip away those annotations so browser can still understand our code
-* You'll probably want to pair this with your build tool of choice (webpack, browserify, etc)
+- If you try and annotate your code and then run it in the browser, it'll obviously break
+- We need to strip away those annotations before we run it in the browser
+- Using Babel and the babel-plugin-transform-flow-strip-types
+ - Get all the benefits of flow as we author code
+ - But can strip away those annotations so browser can still understand our code
+- You'll probably want to pair this with your build tool of choice (webpack, browserify, etc)
 
 --
 
@@ -682,12 +682,12 @@ Note:
 ```
 
 Note:
-* This was snipped from a project at work
-* Have:
- * linting for JavaScript and Styles
- * tests and test coverage via mocha and nyc
- * flow checking (flow check will just run flow once and not start the server)
- * And we run all these via one npm script "validate"
+- This was snipped from a project at work
+- Have:
+ - linting for JavaScript and Styles
+ - tests and test coverage via mocha and nyc
+ - flow checking (flow check will just run flow once and not start the server)
+ - And we run all these via one npm script "validate"
 
 --
 
@@ -709,8 +709,8 @@ Add a script to your package.json scripts
 }
 ```
 Note:
-* No need to strip annotations with babel
-* its taken care of for you
+- No need to strip annotations with babel
+- Its taken care of for you
 
 ---
 
@@ -726,14 +726,14 @@ Note:
 * Adds stubs for anything it doesn't have
 
 Note:
-* "flow-typed is a repository of third-party library interface definitions for use with Flow"
-* Flow typed is both a CLI and a repository of 3rd party library typings (e.g. mocha, jasmine, normalizr, parse, lodash, underscore, redux saga
-* It has a lot in there but obviously the npm ecosystem is massive so don't be surprised if it doesn't have typings for stuff you're using.
-* What it does do though: using the CLI, it will examine your package.json and add typing definitions to your project for anything it has its repository
-* For anything it doesn't have, it'll create stubs that you can leave as is or flesh out more
-* Easy to setup. They recommend installing it as a global npm dep. I prefer to install it as part of my project
-* Once added, just run `flow-typed install`
-* All the installed types will be put inside your project in a folder called "flow-typed"
+- "flow-typed is a repository of third-party library interface definitions for use with Flow"
+- Flow typed is both a CLI and a repository of 3rd party library typings (e.g. mocha, jasmine, normalizr, parse, lodash, underscore, redux saga
+- It has a lot in there but obviously the npm ecosystem is massive so don't be surprised if it doesn't have typings for stuff you're using.
+- What it does do though: using the CLI, it will examine your package.json and add typing definitions to your project for anything it has its repository
+- For anything it doesn't have, it'll create stubs that you can leave as is or flesh out more
+- Easy to setup. They recommend installing it as a global npm dep. I prefer to install it as part of my project
+- Once added, just run `flow-typed install`
+- All the installed types will be put inside your project in a folder called "flow-typed"
 
 ---
 
@@ -747,27 +747,27 @@ Note:
 * Use `// $FlowFixMe` to disable flow checking for a line of code
 
 Note:
-* Fun - I always like to play with new things so this but a fun little journey
-* Challenging and even a little annoying at times: when you're working in your own little sandbox its pretty easy
-* Making sense of type definitions in other modules (when new to flow) can take some time
-* Take it slow: try and isolate your flow checking to small parts of your app - maybe one or two modules and slowly build up your confidence and understanding
-* React: if you're sticking to the the sorta "idiomatic" way of doing React (React, Redux, Immutable, etc) you'll find those things are pretty well annotated already
-* Flow-typed is a repository of 3rd party annotations created by the community.
- * Contains many popular libraries
- * If you're using an npm module it doesn't know about, it'll create a stub annotation file for you
- * You're encouraged to contribute back
+- Fun - I always like to play with new things so this but a fun little journey
+- Challenging and even a little annoying at times: when you're working in your own little sandbox its pretty easy
+- Making sense of type definitions in other modules (when new to flow) can take some time
+- Take it slow: try and isolate your flow checking to small parts of your app - maybe one or two modules and slowly build up your confidence and understanding
+- React: if you're sticking to the the sorta "idiomatic" way of doing React (React, Redux, Immutable, etc) you'll find those things are pretty well annotated already
+- Flow-typed is a repository of 3rd party annotations created by the community.
+ - Contains many popular libraries
+ - If you're using an npm module it doesn't know about, it'll create a stub annotation file for you
+ - You're encouraged to contribute back
 
 ---
 
 ## Flow or TypeScript?
 
 Note:
-* I've only played with TypeScript a tiny bit about a year back so I don't have much to go off
-* Mostly associated with the Angular / Angular 2 community
-* Similar to that of Flow - adds optional type annotations. Once compiled, it removes all the type annotations
-* Additionally it adds decorators and a few other language extensions
-* When people talk about the differences between Flow and TypeScript they'll often point out at that TypeScript is a language that compiles down to JavaScript whereas Flow just adds types to JavaScript. 
- * To me that feels like a pointless distinction because either way, you can run either in a browsers.
+- I've only played with TypeScript a tiny bit about a year back so I don't have much to go off
+- Mostly associated with the Angular / Angular 2 community
+- Similar to that of Flow - adds optional type annotations. Once compiled, it removes all the type annotations
+- Additionally it adds decorators and a few other language extensions
+- When people talk about the differences between Flow and TypeScript they'll often point out at that TypeScript is a language that compiles down to JavaScript whereas Flow just adds types to JavaScript. 
+ - To me that feels like a pointless distinction because either way, you can run either in a browsers.
 
 ---
 
@@ -780,10 +780,10 @@ Note:
 * Utilities e.g. `$Key<T>`, `$Diff<A, B>`, etc.
 
 Note:
-* This was the 100, maybe 200 level intro to Flow
-* There's a lot more explore
-* Admittedly, I don't totally understand all of the advanced topics
-* So I'm still learning
+- This was the 100, maybe 200 level intro to Flow
+- There's a lot more explore
+- Admittedly, I don't totally understand all of the advanced topics
+- So I'm still learning
 
 ---
 
